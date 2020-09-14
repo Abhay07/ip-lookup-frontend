@@ -196,8 +196,4 @@ button:hover{
   }
 }
 
-.seo{
-  opacity: 0;
-}
-
 </style>
