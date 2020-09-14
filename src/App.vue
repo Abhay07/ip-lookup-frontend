@@ -36,7 +36,7 @@ export default {
   }),
   created(){
     fetch(MY_IP_API_ENDPOINT)
-    .then(res=>res.text())
+    .then(res=>res.json())
     .then(res=>this.userIp = res.ip)
     .catch(err=>{
       this.showAlert();
