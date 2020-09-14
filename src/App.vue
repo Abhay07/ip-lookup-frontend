@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {API_ENDPOINT, DEFAULT_ERROR_MSG, IP_REGEX, INVALID_IP_MSG} from './constants';
+import {API_ENDPOINT, DEFAULT_ERROR_MSG, IP_REGEX, INVALID_IP_MSG, MY_IP_API_ENDPOINT} from './constants';
 export default {
   name: 'App',
   data:()=>({
@@ -35,9 +35,9 @@ export default {
     alertMsg:null
   }),
   created(){
-    fetch(API_ENDPOINT)
+    fetch(MY_IP_API_ENDPOINT)
     .then(res=>res.text())
-    .then(res=>this.userIp = res)
+    .then(res=>this.userIp = res.ip)
     .catch(err=>{
       this.showAlert();
     })
