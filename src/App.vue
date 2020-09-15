@@ -35,7 +35,7 @@ export default {
     alertMsg:null
   }),
   created(){
-    fetch(MY_IP_API_ENDPOINT)
+    fetch(API_ENDPOINT)
     .then(res=>res.text())
     .then(res=>this.userIp = res)
     .catch(err=>{
