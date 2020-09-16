@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <img src="./assets/myips.jpg" alt="FInd IP">
-    <h2>Your IP is <span class="myip">{{userIp}}</span></h2>
-    <h2>Search for other IP</h2>
-    <div class="row">
-      <input type="text" placeholder="Enter IP" v-model="inputIp">
-      <button @click="searchIp" v-model="userIp">GET IP LOCATION</button>
+    <h2>Your IPv4 address is <span class="myip">{{userIp}}</span></h2>
+    <div>
+      <h2 class="search-label">Search for other IP</h2>
+      <div class="row">
+        <input type="text" placeholder="Enter IP" v-model="inputIp">
+        <button @click="searchIp" v-model="userIp">GET IP LOCATION</button>
+      </div>
     </div>
     <div v-if="lookupIPLocation">
       <h2>IP : <span class="myip">{{lookupIP}}</span></h2>
@@ -68,15 +70,15 @@ export default {
       .then(res=>res.json())
       .then(res=>{
         let location = "";
-        if(res.country_name){
-          this.lookupIP = res.ip;
-          location+=res.country_name;
+        if(res.city){
+          location+=`${res.city}`
         }
         if(res.region_name){
           location+=`, ${res.region_name}`;
         }
-        if(res.city){
-          location+=`, ${res.city}`
+        if(res.country_name){
+          this.lookupIP = res.ip;
+          location+=`, ${res.country_name}`;
         }
         this.lookupIPLocation = location;
       })
@@ -147,6 +149,10 @@ button:hover{
 
 .myip{
   color:blue;
+}
+.search-label{
+  text-align: left;
+  margin-bottom: 5px;
 }
 .loader{
   position: fixed;
